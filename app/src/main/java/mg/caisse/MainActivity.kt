@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mg.caisse.data.repository.ThemeMode
-import mg.caisse.ui.navigation.CaisseRoot
+import mg.caisse.ui.navigation.AppRoot
 import mg.caisse.ui.theme.CaisseTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val themeMode by settings.themeMode.collectAsStateWithLifecycle(initialValue = ThemeMode.SYSTEM)
             CaisseTheme(themeMode) {
-                CaisseRoot()
+                AppRoot()
             }
         }
     }

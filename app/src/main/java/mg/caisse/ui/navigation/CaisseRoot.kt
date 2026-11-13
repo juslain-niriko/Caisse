@@ -36,7 +36,7 @@ import mg.caisse.ui.screens.tuition.TuitionScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CaisseRoot() {
+fun CaisseRoot(onOpenModules: () -> Unit = {}) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val route = backStackEntry?.destination?.route
@@ -158,6 +158,10 @@ fun CaisseRoot() {
             onNavigate = { target ->
                 showPlusSheet = false
                 navController.navigate(target) { launchSingleTop = true }
+            },
+            onOpenModules = {
+                showPlusSheet = false
+                onOpenModules()
             }
         )
     }

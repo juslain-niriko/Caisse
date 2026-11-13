@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
+import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.LocalActivity
 import androidx.compose.material.icons.filled.School
@@ -27,7 +28,11 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PlusSheet(onDismiss: () -> Unit, onNavigate: (String) -> Unit) {
+fun PlusSheet(
+    onDismiss: () -> Unit,
+    onNavigate: (String) -> Unit,
+    onOpenModules: () -> Unit
+) {
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
             Text("Plus", style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(bottom = 8.dp))
@@ -42,6 +47,9 @@ fun PlusSheet(onDismiss: () -> Unit, onNavigate: (String) -> Unit) {
             }
             SheetItem(Icons.Filled.Settings, "Réglages", "Thème, à propos") {
                 onNavigate(Routes.SETTINGS)
+            }
+            SheetItem(Icons.Filled.Apps, "Modules", "Changer de module (Caisse / BAR)") {
+                onOpenModules()
             }
             Spacer(Modifier.height(24.dp))
         }

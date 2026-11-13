@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import mg.caisse.data.local.AppDatabase
+import mg.caisse.data.repository.BarRepository
 import mg.caisse.data.repository.CaisseRepository
 import mg.caisse.data.repository.SettingsRepository
 
@@ -15,10 +16,14 @@ class CaisseApp : Application() {
 
     val database: AppDatabase by lazy { AppDatabase.get(this) }
     val repository: CaisseRepository by lazy { CaisseRepository(database) }
+    val barRepository: BarRepository by lazy { BarRepository(database) }
     val settings: SettingsRepository by lazy { SettingsRepository(this) }
 
     override fun onCreate() {
         super.onCreate()
-        appScope.launch { repository.ensureSeed() }
+        appScope.launch {
+            repository.ensureSeed()
+            barRepository.ensureSeed()
+        }
     }
 }

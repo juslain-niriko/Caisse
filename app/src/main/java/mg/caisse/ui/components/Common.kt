@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import mg.caisse.CaisseApp
+import mg.caisse.data.repository.BarRepository
 import mg.caisse.data.repository.CaisseRepository
 import mg.caisse.util.formatAriary
 
@@ -26,6 +27,12 @@ import mg.caisse.util.formatAriary
 fun rememberRepository(): CaisseRepository {
     val context = LocalContext.current
     return remember(context) { (context.applicationContext as CaisseApp).repository }
+}
+
+@Composable
+fun rememberBarRepository(): BarRepository {
+    val context = LocalContext.current
+    return remember(context) { (context.applicationContext as CaisseApp).barRepository }
 }
 
 @Composable
